@@ -582,3 +582,32 @@ vim docker-playbook.yml
 ansible-playbook docker-playbook.yml 
 vim docker-playbook.yml 
 clear
+source python-venv/bin/activate
+clear
+ssh pod-aldialvayadi2-managed2 docker ps
+clear
+ssh pod-aldialvayadi2-managed2 docker ps
+clear
+ssh pod-aldialvayadi2-managed2 docker ps
+ls -al
+ls -al comprehensive-labs/
+cd comprehensive-labs/
+vi docker-playbook.yml 
+clear
+cd
+clear
+ls -al
+ls role-create/
+ls data-secret/
+clear
+ls -al
+clear
+git init
+git remote add origin https://github.com/aldisakti2/Ansible-Training.git
+git add .
+git commit -m "First commit"
+git config --global user.email "aldialvayadi2@gmail.com"
+git commit -m "Commit File"
+git config --global user.name "aldisakti2"
+git commit -m "Commit File"
+exit
