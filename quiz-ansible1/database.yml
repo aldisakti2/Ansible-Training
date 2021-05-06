@@ -1,0 +1,30 @@
+- name: Install MariaDB
+  hosts: pod-aldialvayadi2-managed1
+  become: true
+
+  tasks:
+    - name: Adding MariaDB key
+      apt_key:
+        url: https://mariadb.org/mariadb_release_signing_key.asc
+        state: present
+
+    - name: Adding MariaDB repository
+      apt_repository:
+        repo: deb [arch=amd64] http://mirror.biznetgio.com/mariadb/repo/10.4/ubuntu focal main
+        state: present
+                  
+    - name: Install MariaDB Server
+      apt:
+        name: mariadb-server
+        state: latest
+
+    - name: Install MariaDB Client
+      apt:
+        name: mariadb-client
+        state: latest
+            
+    - name: MariaDB is started
+      service:
+        name: mariadb
+        state: started
+        enabled: true

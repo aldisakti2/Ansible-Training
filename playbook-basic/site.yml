@@ -1,0 +1,21 @@
+- name: Install and start Apache 2
+  hosts: pod-aldialvayadi2-managed1
+  become: true
+  tasks:
+    - name: apache2 package is present
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: apache2
+        state: present
+
+    - name: correct index.html is present
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+
+    - name: Apache 2 is started
+      service:
+        name: apache2
+        state: started
+        enabled: true

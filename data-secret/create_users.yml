@@ -1,0 +1,11 @@
+- name: create user accounts for all our servers
+  hosts: pod-aldialvayadi2-managed1
+  become: true
+
+  vars_files:
+    - secret.yml
+  tasks:
+    - name: Creating user from secret.yml
+      user:
+        name: "{{username}}"
+        password: "{{pw | password_hash('sha512')}}"

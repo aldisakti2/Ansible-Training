@@ -1,0 +1,31 @@
+- name: Deploy and start Apache 2 service
+  hosts: webserver
+  become: true
+  vars:
+    web_pkg: apache2
+    web_service: apache2
+    python_pkg: python-urllib3
+  tasks:
+    - name: Required packages are installed and up to date
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name:
+          - "{{web_pkg}}"
+        state: latest
+    - name: The {{web_service}} service is started and enabled
+      service:
+         name: "{{web_service}}"
+         enabled: true
+         state: started
+    - name: Web content is in place
+      copy:
+        content: "Example web content"
+        dest: /var/www/html/index.html
+- name: Verify the apache service
+  hosts: localhost
+  tasks:
+    - name: Ensure the webserver is reacheable
+      uri:
+        url: http://pod-aldialvayadi2-managed2
+        status_code: 200

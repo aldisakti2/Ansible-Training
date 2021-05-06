@@ -1,0 +1,16 @@
+- name: Set the 'db_service' fact
+  set_fact:
+    db_service: mariadb
+- name: Ensure database packages are installed
+  apt:
+    name:
+      - mariadb-server
+      - python3-pymysql
+    state: present
+- name: Ensure the database service is started
+  service:
+    name: "{{ db_service }}"
+    state: started
+    enabled: true
+- name: Create Database Users
+  include_tasks: database_user_tasks.yml

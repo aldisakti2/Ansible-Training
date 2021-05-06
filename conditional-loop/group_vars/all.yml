@@ -1,0 +1,11 @@
+user_list:
+  - name: Aldi Khan Sakti Alvayadi Admin
+    username: aldi-admin
+    password: adinusa88
+    access: ALL
+    role: dbadmin
+  - name: Aldi Khan Sakti Alvayadi User
+    username: aldi-user
+    password: adinusa88
+    access: SELECT
+    role: dbuser

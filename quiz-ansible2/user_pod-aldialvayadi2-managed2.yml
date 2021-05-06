@@ -1,0 +1,25 @@
+- name: Adding user to the managed1 node
+
+  hosts: pod-aldialvayadi2-managed2
+  become: true
+
+  tasks:
+    - name: Add user from dev51-100
+      user:
+        name: "dev{{ item }}"
+        password: "{{ 'adinusa88' | password_hash('sha512') }}" 
+        shell: /bin/bash
+        createhome: yes
+        state: present
+      
+      with_sequence: start=51 end=100
+          
+    - name: Add user from ops51-100
+      user:
+        name: "ops{{ item }}"
+        password: "{{ 'adinusa88' | password_hash('sha512') }}"
+        shell: /bin/bash
+        createhome: yes
+        state: present
+       
+      with_sequence: start=51 end=100

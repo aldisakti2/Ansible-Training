@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@vhost-2.{{ inventory_hostname }}
+    ServerName vhost-2.{{ inventory_hostname }}
+    ErrorLog /var/log/apache2/vhost.{{ inventory_hostname }}-2-error.log
+    CustomLog /var/log/apache2/vhost.{{ inventory_hostname }}-2-common.log common
+    DocumentRoot /var/www/vhosts/{{ inventory_hostname }}-2/
+
+    <Directory /var/www/vhosts/{{ inventory_hostname }}-2/>
+        Options +Indexes +FollowSymlinks +Includes
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
